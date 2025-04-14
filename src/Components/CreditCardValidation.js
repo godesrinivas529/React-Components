@@ -23,13 +23,14 @@ const CreditCardValidation = () => {
     
 
     return (
-        <>
-            <form>
-                <label>Enter Credid Card Details:</label>&nbsp;
-                <input type="text" value={cardDetails} onChange={handleCardInputDetails} placeholder="please enter 16 numbers" required autoFocus/>
+        <div className="cardComp">
+            <h3 className="cardHeading">Validating CreditCard in ReactJS</h3>
+            <form className="cardForm">
+                <label>Enter Credit Card Details:</label>&nbsp;
+                <input type="tel" value={cardDetails} onChange={handleCardInputDetails} placeholder="please enter card details" required autoFocus/>
             </form>
-            <p>{validCCNumber}</p>    
-        </>
+            <p className="cardStatus"><strong>{validCCNumber}</strong></p>    
+        </div>
     )
 }
 

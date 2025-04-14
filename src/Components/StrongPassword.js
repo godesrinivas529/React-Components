@@ -44,14 +44,14 @@ const StrongPassword = () => {
     }
 
     return (
-        <>
-            <h3>Checking Password Strength in ReactJS</h3>
-            <form>
-                <label>Enter Password:</label> &nbsp;
+        <div className="passwordComp">
+            <h3 className="passwordHeading">Checking Password Strength in ReactJS</h3>
+            <form className="passwordForm">
+                <label>Enter Password:</label>
                 <input type="password" id="password"  aria-hidden="true" name="password" autoComplete="new-password" value={userData} onChange={handleUserData} placeholder="Abcd@123" required/>
             </form>
-            <h3><strong>{passwordStrength}</strong></h3>
-        </>
+            <p className="passwordStatus"><strong>{passwordStrength}</strong></p>
+        </div>
     )
 }
 

@@ -12,11 +12,10 @@ const DateTime = () => {
    }, [])
 
     return (
-        <>
-            <h3>Date, Time using React</h3>
-            {timePeriod.toLocaleTimeString()} &nbsp;
-            {timePeriod.toDateString()}
-        </>
+        <div className="timeComp">
+            <h3 className="timeHeading">Date & Time using ReactJS</h3>
+            <p className="timeDisplay">{timePeriod.toLocaleTimeString()}&nbsp;- {timePeriod.toDateString()}</p>
+        </div>
     )
 }
 

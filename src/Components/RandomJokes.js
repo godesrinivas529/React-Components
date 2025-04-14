@@ -31,10 +31,12 @@ const RandomJokes = () => {
     
     return (
         <>
-            <h3>Joke Generator Using React And Joke API</h3>
-            <button onClick={randomJokeGenerator}>Click to generate a joke</button>
-            <div>
-                {displayedJoke}
+            <div className="jokesComponent">
+                <h3 className="jokesHeading">Joke Generator Using React And Joke API</h3>
+                <button className="jokesButton" onClick={randomJokeGenerator}>Click to generate a joke</button>
+                <div className="jokesContent">
+                    {displayedJoke}
+                </div>
             </div>
             
         </>
