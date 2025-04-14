@@ -179,3 +179,40 @@ margin-left: 10% !important;
   text-align: center;
 }
 /* ----------FormDetails Component CSS End-------- */
+
+.diceOneImg{
+  border-radius: 5px;
+}
+.allDices, .diceOneImg {
+  width: 50px; 
+  display: flex;
+}
+.allDices {
+  text-align: center;
+}
+.imagedice {
+  text-align: center;
+  display: inline-block;
+}
+.diceButton {
+  background-color: black;
+  color: white;
+  min-width: 10%;
+  padding: 15px;
+  border-style: none;
+  border-radius: 10px;
+  position: relative;
+  top: 60px;
+  right: 35px;
+  margin: auto;
+}
+.diceComponent {
+  padding: 20px;
+  text-align: center;
+  height: 200px;
+  background-color: lavenderblush;
+}
+.diceHead {
+  color: rgb(112, 67, 235);
+  font-style: italic;
+}
