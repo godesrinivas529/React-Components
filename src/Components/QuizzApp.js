@@ -1,70 +1,83 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
-const quizQuestions = [
+const questions = [
     {
-      id : 1,
-      question: "What is the capital of France?",
-      options: ["Paris", "London", "Berlin", "Madrid"],
-      answer: "Paris"
+        questionText : "What is the capital of France?",
+        answerOptions : [
+            {answerText : 'Paris', isCorrect : true},
+            {answerText : 'London', isCorrect : false},
+            {answerText : 'Berlin', isCorrect : false},
+            {answerText : 'Madrid', isCorrect : false}
+        ],
     },
     {
-        id : 2,
-      question: "Who invented the telephone?",
-      options: ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Marie Curie"],
-      answer: "Alexander Graham Bell"
+        questionText : "Who invented the telephone?",
+        answerOptions : [
+            {answerText : 'Marie Curie', isCorrect : false},
+            {answerText : 'Thomas Edison', isCorrect : false},
+            {answerText : 'Nikola Tesla', isCorrect : false},
+            {answerText : 'Alexander Graham Bell', isCorrect : true}
+        ],
     },
     {
-        id : 3,
-        question: "What is the capital of India?",
-        options: ["Bengaluru", "Hyderabad", "Delhi", "Pune"],
-        answer: "Delhi"
-      },
-      {
-        id : 4,
-        question: "How many States are there in India?",
-        options: ["26", "27", "28", "29"],
-        answer: "28"
-      },
-      {
-        id : 5,
-        question: "When did India gain independence",
-        options: ["Aug 15 1947", "Jan 26 1950", "Aug 16 1947", "Jan 26 1948"],
-        answer: "Aug 15 1947"
-      }
-  ];
-  
+        questionText : "What is the capital of India?",
+        answerOptions : [
+            {answerText : 'Bengaluru', isCorrect : false},
+            {answerText : 'Pune', isCorrect : false},
+            {answerText : 'Delhi', isCorrect : true},
+            {answerText : 'Hyderabad', isCorrect : false}
+        ],
+    }
+]
 
 const QuizzApp = () => {
 
-    const [dispalyQuestins, setDisplayQuestions] = useState(quizQuestions);
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+    const [selectedAnswer, setSelectedAnswer] = useState(null)
+    const [score, setScore] = useState(0)
+    const [showScore, setShowScore] = useState(false)
+    const [optionClicked, setOptionClicked] = useState(false)
 
-    const nextQuestion = (e, id) => {
-        e.preventDefault();
-        setDisplayQuestions((prev) => prev + id )
-
-    }
-    const submitButton = (e) => {
-        e.preventDefault()
+    const nextQuestion = () => {
+        setOptionClicked(false)
+        const lastQuestion = currentQuestion + 1;
         
+        if(lastQuestion < questions.length) {
+            setCurrentQuestion(lastQuestion);
+        } else {
+            setShowScore(true)
+        }
     }
-
+    const handleAnsweredOption = (index, isCorrect) => {
+        setSelectedAnswer(index);
+        setOptionClicked(true)
+        if(isCorrect){
+            setScore(score + 1)
+        }
+    }
+   
 
     return <>
-        <h3>QUIZ APP -- <i>[Under evelopment]</i></h3>
-        <h4>Question</h4>
-        {dispalyQuestins.map((eachObj) => {
-            const {id, question, options} = eachObj;
-            return <li key={id}>{question}
-                <div>
-                    <input type="radio" name="option" value='option1' />{options[0]}
-                    <input type="radio" name="option" value='option2' />{options[1]}
-                    <input type="radio" name="option" value='option3' />{options[2]}
-                    <input type="radio" name="option" value='option4' />{options[3]}
-                </div>
-            </li>
-        })}
-        <button onClick={nextQuestion}>Next</button>
-        <button onCanPlay={submitButton}>Submit</button>
+        <h3>QUIZ APP</h3>
+        {showScore ? <div>
+            you scored {score} of {questions.length}
+        </div> :
+        <div>
+            <div>
+                {questions[currentQuestion].questionText}
+            </div>
+            <div>
+                {questions[currentQuestion].answerOptions.map((option, index) => (
+                    <button onClick={() => {handleAnsweredOption(index, option.isCorrect)}} key={index}>
+                        {option.answerText}
+                    </button>
+                ))}
+            </div>
+            { optionClicked ? <div>your selected option was {selectedAnswer  + 1} </div> : <div>Please select one of them</div>}
+            <button  onClick={nextQuestion}>Next Question</button>
+            <p>Question {currentQuestion + 1} / {questions.length}</p>
+        </div>
+}
     </>
 }
 
